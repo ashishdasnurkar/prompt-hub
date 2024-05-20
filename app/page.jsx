@@ -1,5 +1,4 @@
-import React from "react";
-
+import Feed from "@components/Feed";
 const Home = () => {
   return (
     <section className="w-full flex-center flex-col">
@@ -11,6 +10,7 @@ const Home = () => {
       <p className="desc text-cetner">
         Create and Share cool AI prompts with others.
       </p>
+      <Feed />
     </section>
   );
 };
