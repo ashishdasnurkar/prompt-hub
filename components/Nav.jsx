@@ -26,7 +26,7 @@ const Nav = () => {
         />
         <p className="logo-text">Prompt Hub</p>
 
-        {/*  Mobile Navigation */}
+        {/*  Desktop Navigation */}
         <div className="sm:flex hidden">
           {isUserLoggedIn ? (
             <div className="flex gap-3 md:gap-5">
@@ -44,6 +44,34 @@ const Nav = () => {
                   alt="profile"
                 />
               </Link>
+            </div>
+          ) : (
+            <>
+              {providers &&
+                Object.values(providers).map((provider) => (
+                  <button
+                    type="button"
+                    key={provider.name``}
+                    onClick={() => signIn(provider.id)}
+                    className="black_btn"
+                  >
+                    Sign In
+                  </button>
+                ))}
+            </>
+          )}
+        </div>
+
+        {/*  Desktop Navigation */}
+        <div className="sm:hidden flex relative">
+          {isUserLoggedIn ? (
+            <div className="flex">
+              <Image
+                src="/assets/images/logo.svg"
+                width={37}
+                height={37}
+                alt="profile"
+              />
             </div>
           ) : (
             <>
