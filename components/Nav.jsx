@@ -7,6 +7,7 @@ import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 const Nav = () => {
   const isUserLoggedIn = true;
   const [providers, setProviders] = useState(null);
+  const [toggleDropdown, setToggleDropdown] = useState(false);
   useEffect(() => {
     const setProviders = async () => {
       const response = await getProviders();
@@ -72,7 +73,21 @@ const Nav = () => {
               width={37}
               height={37}
               alt="profile"
+              onClick={() => setToggleDropdown((prev) => !prev)}
             />
+            {toggleDropdown && (
+              <div className="dropdown">
+                <Link
+                  href="/profile"
+                  className="dropdown_link"
+                  onClick={() => {
+                    setToggleDropdown((prev) => !prev);
+                  }}
+                >
+                  My Profile
+                </Link>
+              </div>
+            )}
           </div>
         ) : (
           <>
