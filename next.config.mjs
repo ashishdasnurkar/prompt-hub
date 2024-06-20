@@ -5,7 +5,6 @@ const nextConfig = {
     serverComponentsExternalPackages: ["mongoose"],
   },
   images: {
-    remotePatterns: ["lh3.googleusercontent.com"],
     remotePatterns: [
       {
         protocol: "https",
