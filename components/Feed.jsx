@@ -20,6 +20,8 @@ const PromptCardList = ({ data, handleTagClick }) => {
 const Feed = () => {
   const [allPosts, setAllPosts] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const [searchTimeout, setSearchTimeout] = useState(null);
+  const [searchedResults, setSearchedResults] = useState([]);
 
   const fetchPosts = async () => {
     const response = await fetch("/api/prompt");
@@ -42,7 +44,18 @@ const Feed = () => {
     );
   };
 
-  const handleSearchChange = (e) => {};
+  const handleSearchChange = (e) => {
+    clearTimeout(searchTimeout);
+    setSearchText(e.target.value);
+
+    // debounce method
+    setSearchTimeout(
+      setTimeout(() => {
+        const searchResult = filterPrompts(e.target.value);
+        setSearchedResults(searchResult);
+      }, 500)
+    );
+  };
 
   const handleTagClick = (tagName) => {};
 
@@ -58,7 +71,15 @@ const Feed = () => {
           className="search_input peer"
         />
       </form>
-      <PromptCardList data={allPosts} handleTagClick={handleTagClick} />
+      {searchText ? (
+        <PromptCardList
+          data={searchedResults}
+          handleTagClick={handleTagClick}
+        />
+      ) : (
+        <PromptCardList data={allPosts} handleTagClick={handleTagClick} />
+      )}
+      ;
     </section>
   );
 };
