@@ -57,7 +57,12 @@ const Feed = () => {
     );
   };
 
-  const handleTagClick = (tagName) => {};
+  const handleTagClick = (tagName) => {
+    setSearchText(tagName);
+
+    const searchResult = filterPrompts(tagName);
+    setSearchedResults(searchResult);
+  };
 
   return (
     <section className="feed">
