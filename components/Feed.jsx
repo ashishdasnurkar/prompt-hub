@@ -1,9 +1,10 @@
 "use client";
+
 import { useState, useEffect } from "react";
 
 import PromptCard from "./PromptCard";
 
-const PromptCardList = ({ data, handleTagClick }) => {
+const PromptCardList = ({ data, handleTagClick, handleDelete }) => {
   return (
     <div className="mt-16 prompt_layout">
       {data.map((post) => (
@@ -11,6 +12,7 @@ const PromptCardList = ({ data, handleTagClick }) => {
           key={post._id}
           post={post}
           handleTagClick={handleTagClick}
+          handleDelete={handleDelete}
         />
       ))}
     </div>
@@ -63,6 +65,9 @@ const Feed = () => {
     const searchResult = filterPrompts(tagName);
     setSearchedResults(searchResult);
   };
+  const handleDelete = (id) => {
+    console.log(id);
+  };
 
   return (
     <section className="feed">
@@ -80,9 +85,14 @@ const Feed = () => {
         <PromptCardList
           data={searchedResults}
           handleTagClick={handleTagClick}
+          handleDelete={handleDelete}
         />
       ) : (
-        <PromptCardList data={allPosts} handleTagClick={handleTagClick} />
+        <PromptCardList
+          data={allPosts}
+          handleTagClick={handleTagClick}
+          handleDelete={handleDelete}
+        />
       )}
       ;
     </section>
