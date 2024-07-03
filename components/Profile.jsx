@@ -21,3 +21,4 @@ const Profile = ({ name, desc, data, handleEdit, handleDelete }) => {
     </section>
   );
 };
+export default Profile;
