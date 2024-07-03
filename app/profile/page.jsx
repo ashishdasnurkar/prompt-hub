@@ -22,6 +22,10 @@ const MyProfile = () => {
 
     if (session?.user.id) fetchPosts();
   }, [session?.user.id]);
+
+  const handleEdit = (post) => {};
+  const handleDelete = async (post) => {};
+
   return (
     <Profile
       name="My"
